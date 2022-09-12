@@ -42,7 +42,11 @@ public with sharing class ForceeaAddress {
 
         if (locality == 'greece' && language == 'greek') {
             loadAddressesFromGreeceInGreek();
-        } else {
+        }
+        if (locality == 'australia' && language == 'english') {
+            loadAddressesFromAustraliaInEnglish();
+        } else
+        {
             loadAddressesFromUnitedStatesInEnglish();
         }
     }
@@ -161,4 +165,41 @@ public with sharing class ForceeaAddress {
             MESSAGE_ADDRESSES + 'United States in the English language');
     }
 
+/**
+     * @description Load addresses from United States in English.
+     */
+    private static void loadAddressesFromAustraliaInEnglish() {
+        if (!FObject.addressesLibrary.isEmpty()) {
+            return;
+        }
+
+        FObject.streetNumberGoesAfterStreet = false;
+        String country = 'Australia';
+
+        FObject.addressesLibrary.add(
+            new ForceeaAddress('Cardigan', '3053', 'Carlton', 'VIC', country));
+        FObject.addressesLibrary.add(
+            new ForceeaAddress('Oak St', '3052', 'Parkville', 'VIC', country));
+        FObject.addressesLibrary.add(
+            new ForceeaAddress('Fawkner St', '3006', 'Southbank', 'VIC', country));
+        FObject.addressesLibrary.add(
+            new ForceeaAddress('Gale Rd', '2035', 'Maroubra', 'NSW', country));
+        FObject.addressesLibrary.add(
+            new ForceeaAddress('Cobar St', '2064', 'Willoughby', 'NSW', country));
+        FObject.addressesLibrary.add(
+            new ForceeaAddress('Park Rd', '2110', 'Hunters Hill', 'NSW', country));
+        FObject.addressesLibrary.add(
+            new ForceeaAddress('Young St', '2600', 'Barton', 'ACT', country));
+        FObject.addressesLibrary.add(
+            new ForceeaAddress('Rogers St', '4000', 'Spring Hill', 'QLD', country));
+        FObject.addressesLibrary.add(
+            new ForceeaAddress('Bunya Lake Ct', '4055', 'Bunya', 'QLD', country));
+        FObject.addressesLibrary.add(
+            new ForceeaAddress('Sherbrooke Rd', '4110', 'Willawong', 'QLD', country));
+        FObject.addressesLibrary.add(
+            new ForceeaAddress('Oxford St', '6007', 'Leederville', 'WA', country));
+
+        FObject.forceeaDebugStatic(ForceeaService.INFO,
+            MESSAGE_ADDRESSES + 'Australia in the English language');
+    }
 }
